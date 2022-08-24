@@ -1,15 +1,27 @@
-import { GraphQLClient } from "graphql-request";
-export function request({ query, variables, includeDrafts, excludeInvalid }) {
-    const headers = {
-        authorization: `Bearer ${process.env.VUE_APP_CMS_DATOCMS_API_TOKEN}`
-    };
-    if (includeDrafts) {
-        headers['X-Include-Drafts'] = 'true';
+import axios from 'axios'
+
+export async function request({ query, variables, preview }) {
+    const endpoint = preview
+        ? `https://graphql.datocms.com/preview`
+        : `https://graphql.datocms.com/`
+
+    const { data } = await axios.post(
+        endpoint,
+        {
+            query,
+            variables
+        },
+        {
+            headers: {
+                Authorization:
+                    `Bearer ${process.env.VUE_APP_CMS_DATOCMS_API_TOKEN}`
+            }
+        }
+    )
+
+    if (data.errors) {
+        throw JSON.stringify(data.errors);
     }
 
-    if (excludeInvalid) {
-        headers['X-Exclude-Invalid'] = 'true';
-    }
-    const client = new GraphQLClient('https://graphql.datocms.com/', { headers });
-    return client.request(query, variables);
+    return data.data;
 }
