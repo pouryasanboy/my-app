@@ -5,6 +5,7 @@ Vue.use(VueAxios, axios)
 
 
 import App from "./App.vue";
+import "./assets/tailwind.css"
 
 
 

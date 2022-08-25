@@ -1,6 +1,9 @@
 <template>
-  <div>
-    <div>{{ data }}</div>
+  <div class="bg-gray-500" v-if="data">
+    <h2 class="text-2xl text-red-500">{{ data.course.courseHeader[0].smallTitle }}</h2>
+    <div>{{ data.course.courseHeader[0].bigTitle }}</div>
+    <div>{{ data.course.courseHeader[0].description }}</div>
+    <button>{{ data.course.courseHeader[0].buttonText }}</button>
   </div>
 </template>
 <script>
@@ -14,8 +17,9 @@ export default {
   },
   async mounted() {
     this.data = await request({
-      query: `
-        course {
+      query : `
+      query MyQuery{
+      course {
     id
     name
     courseHeader {
@@ -27,6 +31,7 @@ export default {
       }
     }
   }
+      }
       `
     });
   }
