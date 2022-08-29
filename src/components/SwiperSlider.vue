@@ -20,6 +20,7 @@
 </template>
 <script>
 import { Mousewheel, Pagination, Navigation } from 'swiper'
+
 import { SwiperCore, Swiper, SwiperSlide } from 'swiper-vue2'
 import {request} from "@/datocms";
 SwiperCore.use([Mousewheel, Pagination, Navigation ])
