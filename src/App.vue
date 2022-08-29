@@ -9,14 +9,18 @@
     <div class="flex justify-center mt-12">
       <CardProfile />
     </div>
+    <div class="mt-12">
+      <SwiperSlider />
+    </div>
   </div>
 </template>
 <script>
 import { request } from "./datocms";
 import CardProfile from "@/components/CardProfile";
+import SwiperSlider from "@/components/SwiperSlider";
 export default {
   name: "App",
-  components: {CardProfile},
+  components: {SwiperSlider, CardProfile},
   data() {
     return {
       data: null

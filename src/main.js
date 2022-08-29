@@ -1,6 +1,7 @@
 import Vue from "vue";
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import 'swiper/swiper-bundle.css'
 Vue.use(VueAxios, axios)
 
 
